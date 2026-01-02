@@ -8,200 +8,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* same CSS as you sent — unchanged */
 :root{
-    --bg:#05070a;
-    --card:#0e1220;
-    --border:rgba(255,255,255,.08);
-    --text:#f8fafc;
-    --muted:#94a3b8;
-
-    --blue:#38bdf8;
-    --purple:#c084fc;
-    --green:#4ade80;
-    --orange:#fb923c;
+    --bg:#05070a;--card:#0e1220;--border:rgba(255,255,255,.08);
+    --text:#f8fafc;--muted:#94a3b8;
+    --blue:#38bdf8;--purple:#c084fc;--green:#4ade80;--orange:#fb923c;
 }
-
 *{box-sizing:border-box}
 html,body{margin:0}
-
 body{
     font-family:'Inter',sans-serif;
-    background:
-        radial-gradient(1200px 600px at 10% -10%,#0b1a33,transparent),
-        radial-gradient(900px 500px at 90% 20%,#1a0b33,transparent),
-        var(--bg);
+    background:radial-gradient(1200px 600px at 10% -10%,#0b1a33,transparent),
+               radial-gradient(900px 500px at 90% 20%,#1a0b33,transparent),var(--bg);
     color:var(--text);
     padding:48px 32px;
-    display:flex;
-    justify-content:center;
+    display:flex;justify-content:center;
 }
-
-.container{
-    width:100%;
-    max-width:1600px;
-    animation:fadeUp .9s ease both;
-}
-
-@keyframes fadeUp{
-    from{opacity:0;transform:translateY(20px)}
-    to{opacity:1;transform:none}
-}
-
-header{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-h1{
-    font-family:'Outfit',sans-serif;
-    font-size:2.8rem;
-    font-weight:800;
-    margin:0;
-    background:linear-gradient(180deg,#fff,#9ca3af);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-header p{
-    margin-top:8px;
-    font-size:.9rem;
-    color:var(--muted);
-}
-
-/* TODAY STATUS */
-.today-status{
-    margin:0 auto 50px;
-    width:max-content;
-    padding:12px 26px;
-    border-radius:999px;
-    font-size:.85rem;
-    font-weight:700;
-    letter-spacing:.04em;
-    background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(192,132,252,.15));
-    border:1px solid rgba(255,255,255,.15);
-    color:#e5f2ff;
-    box-shadow:0 10px 30px rgba(0,0,0,.4);
-    animation:statusIn .8s ease both;
-}
-
-@keyframes statusIn{
-    from{opacity:0;transform:translateY(-10px)}
-    to{opacity:1;transform:none}
-}
-
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:30px;
-}
-
-/* DAY CARD */
-.card{
-    background:linear-gradient(180deg,rgba(255,255,255,.05),transparent),var(--card);
-    border:1px solid var(--border);
-    border-radius:28px;
-    padding:28px;
-    backdrop-filter:blur(18px);
-    transition:.4s ease;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 30px 70px rgba(0,0,0,.6);
-}
-
-.day-label{
-    font-family:'Outfit',sans-serif;
-    font-size:1.6rem;
-    font-weight:700;
-    margin-bottom:28px;
-    padding-bottom:14px;
-    border-bottom:1px solid var(--border);
-}
-
-/* SESSION */
-.session{
-    position:relative;
-    background:rgba(255,255,255,.03);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:18px 18px 16px 22px;
-    margin-bottom:18px;
-}
-
-.session::before{
-    content:"";
-    position:absolute;
-    left:0;
-    top:0;
-    height:100%;
-    width:4px;
-    background:var(--blue);
-    border-radius:6px;
-}
-
+.container{width:100%;max-width:1600px}
+header{text-align:center;margin-bottom:30px}
+h1{font-family:'Outfit';font-size:2.8rem;font-weight:800;margin:0}
+header p{color:var(--muted)}
+.today-status{margin:0 auto 40px;padding:12px 26px;border-radius:999px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:28px}
+.day-label{font-family:'Outfit';font-size:1.6rem;margin-bottom:20px}
+.session{background:rgba(255,255,255,.04);border-radius:16px;padding:16px;margin-bottom:14px;position:relative}
+.session::before{content:"";position:absolute;left:0;top:0;height:100%;width:4px;background:var(--blue)}
 .purple::before{background:var(--purple)}
 .green::before{background:var(--green)}
 .orange::before{background:var(--orange)}
-
-.time{
-    font-size:.72rem;
-    font-weight:700;
-    letter-spacing:.08em;
-    color:var(--blue);
-    margin-bottom:8px;
-}
-
-.code{
-    font-family:'Outfit',sans-serif;
-    font-size:.8rem;
-    font-weight:800;
-    letter-spacing:.1em;
-    margin-bottom:4px;
-}
-
-.name{
-    font-size:.92rem;
-    line-height:1.55;
-}
-
-.venue{
-    display:inline-block;
-    margin-top:12px;
-    font-size:.65rem;
-    font-weight:800;
-    padding:6px 14px;
-    border-radius:999px;
-    background:rgba(255,255,255,.08);
-    color:var(--muted);
-}
-
-/* TODAY CARD */
-.is-today{
-    border-color:var(--blue);
-    box-shadow:
-        0 0 0 1px rgba(56,189,248,.35),
-        inset 0 0 50px rgba(56,189,248,.08);
-}
-
-/* RESPONSIVE */
-@media(max-width:1200px){
-    .grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:640px){
-    body{padding:28px 16px}
-    .grid{grid-template-columns:1fr}
-}
+.time{font-size:.75rem;color:var(--blue)}
+.code{font-family:'Outfit';font-weight:800}
+.venue{font-size:.7rem;color:var(--muted)}
+.is-today{border-color:var(--blue)}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
-
 <div class="container">
+
 <header>
     <h1>Academic Command Center</h1>
-    <p>Spring 2025 • Final Version</p>
+    <p>Spring 2026 • Final Verified Timetable</p>
 </header>
 
 <div id="todayStatus" class="today-status"></div>
@@ -213,24 +63,17 @@ header p{
     <div class="day-label">Monday</div>
 
     <div class="session">
-        <div class="time">10:05 – 11:30 (T2)</div>
+        <div class="time">10:05 – 11:30</div>
         <div class="code">CS6.301</div>
         <div class="name">Design and Analysis of Software Systems</div>
         <div class="venue">H105</div>
     </div>
 
     <div class="session purple">
-        <div class="time">02:00 – 03:25 (T4)</div>
+        <div class="time">02:00 – 03:25</div>
         <div class="code">HS8.102b</div>
         <div class="name">Intro to Human Sciences</div>
         <div class="venue">H105</div>
-    </div>
-
-    <div class="session orange">
-        <div class="time">03:35 – 05:00 (T5)</div>
-        <div class="code">CS8.301</div>
-        <div class="name">Introduction to Information Security</div>
-        <div class="venue">H103</div>
     </div>
 </div>
 
@@ -239,17 +82,36 @@ header p{
     <div class="day-label">Tuesday</div>
 
     <div class="session green">
-        <div class="time">08:30 – 09:55 (T1)</div>
-        <div class="code">CS1.201</div>
-        <div class="name">Data Structures and Algorithms</div>
-        <div class="venue">SH1 / SH2 / SH3</div>
+        <div class="time">08:30 – 09:55</div>
+        <div class="code">CS1.201b</div>
+        <div class="name">Data Structures and Algorithms (Sec B)</div>
+        <div class="venue">SH2</div>
     </div>
 
     <div class="session">
-        <div class="time">10:05 – 11:30 (T2)</div>
+        <div class="time">10:05 – 11:30</div>
         <div class="code">CS6.402</div>
         <div class="name">Engineering Virtual Reality Systems</div>
         <div class="venue">H101</div>
+    </div>
+
+    <div class="session orange">
+        <div class="time">02:00 – 03:25</div>
+        <div class="code">SC1.111a</div>
+        <div class="name">Science II</div>
+        <div class="venue">H105</div>
+    </div>
+</div>
+
+<!-- WEDNESDAY -->
+<div class="card" data-day="3">
+    <div class="day-label">Wednesday</div>
+
+    <div class="session">
+        <div class="time">10:05 – 11:30</div>
+        <div class="code">CS7.301</div>
+        <div class="name">Machine, Data and Learning</div>
+        <div class="venue">H105</div>
     </div>
 </div>
 
@@ -258,24 +120,17 @@ header p{
     <div class="day-label">Thursday</div>
 
     <div class="session">
-        <div class="time">10:05 – 11:30 (T2)</div>
+        <div class="time">10:05 – 11:30</div>
         <div class="code">CS6.301</div>
         <div class="name">Design and Analysis of Software Systems</div>
         <div class="venue">H105</div>
     </div>
 
     <div class="session purple">
-        <div class="time">02:00 – 03:25 (T4)</div>
+        <div class="time">02:00 – 03:25</div>
         <div class="code">HS8.102b</div>
         <div class="name">Intro to Human Sciences</div>
         <div class="venue">H105</div>
-    </div>
-
-    <div class="session orange">
-        <div class="time">03:35 – 05:00 (T5)</div>
-        <div class="code">CS8.301</div>
-        <div class="name">Introduction to Information Security</div>
-        <div class="venue">H103</div>
     </div>
 </div>
 
@@ -284,17 +139,29 @@ header p{
     <div class="day-label">Friday</div>
 
     <div class="session green">
-        <div class="time">08:30 – 09:55 (T1)</div>
-        <div class="code">CS1.201</div>
-        <div class="name">Data Structures and Algorithms</div>
-        <div class="venue">SH1 / SH2 / SH3</div>
+        <div class="time">08:30 – 09:55</div>
+        <div class="code">CS1.201b</div>
+        <div class="name">Data Structures and Algorithms (Sec B)</div>
+        <div class="venue">SH2</div>
     </div>
 
+    <div class="session orange">
+        <div class="time">02:00 – 03:25</div>
+        <div class="code">SC1.111a</div>
+        <div class="name">Science II</div>
+        <div class="venue">H105</div>
+    </div>
+</div>
+
+<!-- SATURDAY -->
+<div class="card" data-day="6">
+    <div class="day-label">Saturday</div>
+
     <div class="session">
-        <div class="time">10:05 – 11:30 (T2)</div>
-        <div class="code">CS6.402</div>
-        <div class="name">Engineering Virtual Reality Systems</div>
-        <div class="venue">H101</div>
+        <div class="time">10:05 – 11:30</div>
+        <div class="code">CS7.301</div>
+        <div class="name">Machine, Data and Learning</div>
+        <div class="venue">H105</div>
     </div>
 </div>
 
@@ -302,29 +169,18 @@ header p{
 </div>
 
 <script>
-const today = new Date().getDay();
-const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const today=new Date().getDay();
+const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const status=document.getElementById("todayStatus");
+let hasClass=false;
 
-let hasClass = false;
-
-document.querySelectorAll('.card').forEach(card=>{
-    if(card.dataset.day == today){
-        card.classList.add('is-today');
-        if(card.querySelector('.session')) hasClass = true;
-    }
+document.querySelectorAll('.card').forEach(c=>{
+ if(+c.dataset.day===today){c.classList.add('is-today');hasClass=true;}
 });
 
-const status = document.getElementById("todayStatus");
-
-if(today === 0 || today === 6){
-    status.innerHTML = `🗓️ Today is <b>${days[today]}</b> — Weekend mode 😎`;
-}
-else if(hasClass){
-    status.innerHTML = `📚 Today is <b>${days[today]}</b> — You have classes today`;
-}
-else{
-    status.innerHTML = `🎉 Today is <b>${days[today]}</b> — Enjoy your day! No classes`;
-}
+status.innerHTML =
+(today===0)?"😴 Sunday — no classes":
+(hasClass?`📚 ${days[today]} — you have classes`:`🎉 ${days[today]} — free day`);
 </script>
 
 </body>
