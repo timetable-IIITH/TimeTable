@@ -8,39 +8,108 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* same CSS as you sent — unchanged */
 :root{
-    --bg:#05070a;--card:#0e1220;--border:rgba(255,255,255,.08);
-    --text:#f8fafc;--muted:#94a3b8;
-    --blue:#38bdf8;--purple:#c084fc;--green:#4ade80;--orange:#fb923c;
+    --bg:#05070a;
+    --card:#0e1220;
+    --border:rgba(255,255,255,.08);
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --blue:#38bdf8;
+    --purple:#c084fc;
+    --green:#4ade80;
+    --orange:#fb923c;
 }
 *{box-sizing:border-box}
 html,body{margin:0}
 body{
     font-family:'Inter',sans-serif;
-    background:radial-gradient(1200px 600px at 10% -10%,#0b1a33,transparent),
-               radial-gradient(900px 500px at 90% 20%,#1a0b33,transparent),var(--bg);
+    background:
+        radial-gradient(1200px 600px at 10% -10%,#0b1a33,transparent),
+        radial-gradient(900px 500px at 90% 20%,#1a0b33,transparent),
+        var(--bg);
     color:var(--text);
     padding:48px 32px;
-    display:flex;justify-content:center;
+    display:flex;
+    justify-content:center;
 }
 .container{width:100%;max-width:1600px}
-header{text-align:center;margin-bottom:30px}
-h1{font-family:'Outfit';font-size:2.8rem;font-weight:800;margin:0}
+header{text-align:center;margin-bottom:24px}
+h1{
+    font-family:'Outfit',sans-serif;
+    font-size:2.6rem;
+    margin:0;
+}
 header p{color:var(--muted)}
-.today-status{margin:0 auto 40px;padding:12px 26px;border-radius:999px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:28px}
-.day-label{font-family:'Outfit';font-size:1.6rem;margin-bottom:20px}
-.session{background:rgba(255,255,255,.04);border-radius:16px;padding:16px;margin-bottom:14px;position:relative}
-.session::before{content:"";position:absolute;left:0;top:0;height:100%;width:4px;background:var(--blue)}
-.purple::before{background:var(--purple)}
+
+.today-status{
+    margin:0 auto 30px;
+    width:max-content;
+    padding:14px 28px;
+    border-radius:999px;
+    font-size:.85rem;
+    font-weight:600;
+    background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(192,132,252,.15));
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:28px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:26px;
+    padding:26px;
+    cursor:pointer;
+    transition:.35s ease;
+}
+.card:hover{transform:translateY(-6px)}
+.is-today{
+    border-color:var(--blue);
+    box-shadow:0 0 0 1px rgba(56,189,248,.35);
+}
+
+.day-label{
+    font-family:'Outfit',sans-serif;
+    font-size:1.5rem;
+    margin-bottom:20px;
+}
+
+.session{
+    position:relative;
+    background:rgba(255,255,255,.04);
+    border-radius:16px;
+    padding:16px 16px 14px 22px;
+    margin-bottom:14px;
+}
+.session::before{
+    content:"";
+    position:absolute;
+    left:0;top:0;
+    height:100%;width:4px;
+    background:var(--blue);
+    border-radius:6px;
+}
 .green::before{background:var(--green)}
+.purple::before{background:var(--purple)}
 .orange::before{background:var(--orange)}
-.time{font-size:.75rem;color:var(--blue)}
-.code{font-family:'Outfit';font-weight:800}
-.venue{font-size:.7rem;color:var(--muted)}
-.is-today{border-color:var(--blue)}
+
+.time{font-size:.72rem;font-weight:700;color:var(--blue)}
+.code{font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem}
+.name{font-size:.92rem}
+.venue{
+    margin-top:8px;
+    display:inline-block;
+    font-size:.65rem;
+    padding:5px 12px;
+    border-radius:999px;
+    background:rgba(255,255,255,.08);
+    color:var(--muted);
+}
+
 @media(max-width:1200px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.grid{grid-template-columns:1fr}}
 </style>
@@ -51,8 +120,15 @@ header p{color:var(--muted)}
 
 <header>
     <h1>Academic Command Center</h1>
-    <p>Spring 2026 • Final Verified Timetable</p>
+    <p>Spring 2026 • Final Verified</p>
 </header>
+
+<!-- APPROVAL MESSAGE -->
+<div class="today-status">
+<b>Nityanand Gupta</b><br>
+Student: Nityanand Gupta (2024101147) has been approved for
+<b>Basket Ball</b> at time slot <b>6:45 pm – 7:45 pm (MWF)</b>.
+</div>
 
 <div id="todayStatus" class="today-status"></div>
 
@@ -60,109 +136,116 @@ header p{color:var(--muted)}
 
 <!-- MONDAY -->
 <div class="card" data-day="1">
-    <div class="day-label">Monday</div>
+<div class="day-label">Monday</div>
 
-    <div class="session">
-        <div class="time">10:05 – 11:30</div>
-        <div class="code">CS6.301</div>
-        <div class="name">Design and Analysis of Software Systems</div>
-        <div class="venue">H105</div>
-    </div>
+<div class="session">
+<div class="time">10:05 – 11:30</div>
+<div class="code">CS6.301</div>
+<div class="name">Design and Analysis of Software Systems</div>
+<div class="venue">H105</div>
+</div>
 
-    <div class="session purple">
-        <div class="time">02:00 – 03:25</div>
-        <div class="code">HS8.102b</div>
-        <div class="name">Intro to Human Sciences</div>
-        <div class="venue">H105</div>
-    </div>
+<div class="session purple">
+<div class="time">02:00 – 03:25</div>
+<div class="code">HS8.102b</div>
+<div class="name">Intro to Human Sciences</div>
+<div class="venue">H105</div>
+</div>
 </div>
 
 <!-- TUESDAY -->
 <div class="card" data-day="2">
-    <div class="day-label">Tuesday</div>
+<div class="day-label">Tuesday</div>
 
-    <div class="session green">
-        <div class="time">08:30 – 09:55</div>
-        <div class="code">CS1.201b</div>
-        <div class="name">Data Structures and Algorithms (Sec B)</div>
-        <div class="venue">SH2</div>
-    </div>
+<div class="session green">
+<div class="time">08:30 – 09:55</div>
+<div class="code">CS1.201b</div>
+<div class="name">Data Structures and Algorithms (Sec B)</div>
+<div class="venue">SH2</div>
+</div>
 
-    <div class="session">
-        <div class="time">10:05 – 11:30</div>
-        <div class="code">CS6.402</div>
-        <div class="name">Engineering Virtual Reality Systems</div>
-        <div class="venue">H101</div>
-    </div>
+<div class="session">
+<div class="time">10:05 – 11:30</div>
+<div class="code">CS6.402</div>
+<div class="name">Engineering Virtual Reality Systems</div>
+<div class="venue">H101</div>
+</div>
 
-    <div class="session orange">
-        <div class="time">02:00 – 03:25</div>
-        <div class="code">SC1.111a</div>
-        <div class="name">Science II</div>
-        <div class="venue">H105</div>
-    </div>
+<div class="session orange">
+<div class="time">02:00 – 03:25</div>
+<div class="code">SC1.111a</div>
+<div class="name">Science II</div>
+<div class="venue">H105</div>
+</div>
 </div>
 
 <!-- WEDNESDAY -->
 <div class="card" data-day="3">
-    <div class="day-label">Wednesday</div>
+<div class="day-label">Wednesday</div>
 
-    <div class="session">
-        <div class="time">10:05 – 11:30</div>
-        <div class="code">CS7.301</div>
-        <div class="name">Machine, Data and Learning</div>
-        <div class="venue">H105</div>
-    </div>
+<div class="session">
+<div class="time">10:05 – 11:30</div>
+<div class="code">CS7.301</div>
+<div class="name">Machine, Data and Learning</div>
+<div class="venue">H105</div>
+</div>
+
+<div class="session purple">
+<div class="time">11:40 – 12:40 <br> 12:40 – 01:40</div>
+<div class="code">OC3.102</div>
+<div class="name">Value Education II (Tutorial)</div>
+<div class="venue">As Allotted</div>
+</div>
 </div>
 
 <!-- THURSDAY -->
 <div class="card" data-day="4">
-    <div class="day-label">Thursday</div>
+<div class="day-label">Thursday</div>
 
-    <div class="session">
-        <div class="time">10:05 – 11:30</div>
-        <div class="code">CS6.301</div>
-        <div class="name">Design and Analysis of Software Systems</div>
-        <div class="venue">H105</div>
-    </div>
+<div class="session">
+<div class="time">10:05 – 11:30</div>
+<div class="code">CS6.301</div>
+<div class="name">Design and Analysis of Software Systems</div>
+<div class="venue">H105</div>
+</div>
 
-    <div class="session purple">
-        <div class="time">02:00 – 03:25</div>
-        <div class="code">HS8.102b</div>
-        <div class="name">Intro to Human Sciences</div>
-        <div class="venue">H105</div>
-    </div>
+<div class="session purple">
+<div class="time">02:00 – 03:25</div>
+<div class="code">HS8.102b</div>
+<div class="name">Intro to Human Sciences</div>
+<div class="venue">H105</div>
+</div>
 </div>
 
 <!-- FRIDAY -->
 <div class="card" data-day="5">
-    <div class="day-label">Friday</div>
+<div class="day-label">Friday</div>
 
-    <div class="session green">
-        <div class="time">08:30 – 09:55</div>
-        <div class="code">CS1.201b</div>
-        <div class="name">Data Structures and Algorithms (Sec B)</div>
-        <div class="venue">SH2</div>
-    </div>
+<div class="session green">
+<div class="time">08:30 – 09:55</div>
+<div class="code">CS1.201b</div>
+<div class="name">Data Structures and Algorithms (Sec B)</div>
+<div class="venue">SH2</div>
+</div>
 
-    <div class="session orange">
-        <div class="time">02:00 – 03:25</div>
-        <div class="code">SC1.111a</div>
-        <div class="name">Science II</div>
-        <div class="venue">H105</div>
-    </div>
+<div class="session orange">
+<div class="time">02:00 – 03:25</div>
+<div class="code">SC1.111a</div>
+<div class="name">Science II</div>
+<div class="venue">H105</div>
+</div>
 </div>
 
 <!-- SATURDAY -->
 <div class="card" data-day="6">
-    <div class="day-label">Saturday</div>
+<div class="day-label">Saturday</div>
 
-    <div class="session">
-        <div class="time">10:05 – 11:30</div>
-        <div class="code">CS7.301</div>
-        <div class="name">Machine, Data and Learning</div>
-        <div class="venue">H105</div>
-    </div>
+<div class="session">
+<div class="time">10:05 – 11:30</div>
+<div class="code">CS7.301</div>
+<div class="name">Machine, Data and Learning</div>
+<div class="venue">H105</div>
+</div>
 </div>
 
 </div>
@@ -174,13 +257,20 @@ const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturda
 const status=document.getElementById("todayStatus");
 let hasClass=false;
 
-document.querySelectorAll('.card').forEach(c=>{
- if(+c.dataset.day===today){c.classList.add('is-today');hasClass=true;}
+document.querySelectorAll('.card').forEach(card=>{
+ if(+card.dataset.day===today){
+   card.classList.add('is-today');
+   hasClass=true;
+ }
+ card.addEventListener('click',()=>{
+   document.querySelector('.grid').prepend(card);
+ });
 });
 
 status.innerHTML =
-(today===0)?"😴 Sunday — no classes":
-(hasClass?`📚 ${days[today]} — you have classes`:`🎉 ${days[today]} — free day`);
+(today===0) ? "😴 Sunday — no classes" :
+(hasClass ? `📚 ${days[today]} — you have classes today`
+          : `🎉 ${days[today]} — free day`);
 </script>
 
 </body>
